@@ -1,5 +1,6 @@
 import express from "express";
 import mysql from "mysql2/promise";
+import cors from "cors";
 
 const pool = mysql.createPool({
   host: "localhost",
@@ -14,6 +15,13 @@ const pool = mysql.createPool({
 const app = express();
 
 app.use(express.json());
+
+const corsOptions = {
+  origin: "https://cdpn.io",
+  optionsSuccessStatus: 200, // some legacy browsers (IE11, various SmartTVs) choke on 204
+};
+
+app.use(cors(corsOptions));
 
 const port = 3000;
 
